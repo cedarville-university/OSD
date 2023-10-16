@@ -1,5 +1,5 @@
 #================================================
-#   [PreOS] Update Module
+#   [PreOS] Update Module 
 #================================================
 if ((Get-MyComputerModel) -match 'Virtual') {
     Write-Host  -ForegroundColor Green "Setting Display Resolution to 1600x"
