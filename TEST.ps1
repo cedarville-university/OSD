@@ -25,6 +25,81 @@ $Params = @{
 }
 Start-OSDCloud @Params
 
+#=======================================================================
+#   Unattend.xml
+#=======================================================================
+
+$UnattendXml = @'
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Description>OSDCloud Specialize</Description>
+                    <Path>Powershell -ExecutionPolicy Bypass -Command Invoke-OSDSpecialize -Verbose</Path>
+                </RunSynchronousCommand>
+
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Description>OSDCloud Specialize</Description>
+                    <Path>Powershell -ExecutionPolicy Bypass -Command Invoke-OSDSpecialize -Verbose</Path>
+                </RunSynchronousCommand>
+
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Description>OSDCloud Specialize</Description>
+                    <Path>Powershell -ExecutionPolicy Bypass -Command Invoke-OSDSpecialize -Verbose</Path>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <settings pass="auditUser">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Description>Set ExecutionPolicy RemoteSigned</Description>
+                    <Path>PowerShell -WindowStyle Hidden -Command "Set-ExecutionPolicy RemoteSigned -Force"</Path>
+                </RunSynchronousCommand>
+
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Description>Install AutopilotOOBE module</Description>
+                    <Path>PowerShell -WindowStyle Hidden -Command "Install-Module AutopilotOOBE -Force -Verbose -SkipPublisherCheck"</Path>
+                </RunSynchronousCommand>
+
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Description>Start custom Autopilot script</Description>
+                    <Path>CMD /C C:\Windows\System32\Autopilot.cmd</Path>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+</unattend>
+'@
+
+$PantherUnattendPath = 'C:\Windows\Panther\'
+if (-NOT (Test-Path $PantherUnattendPath)) {
+    New-Item -Path $PantherUnattendPath -ItemType Directory -Force | Out-Null
+}
+$AuditUnattendPath = Join-Path $PantherUnattendPath 'Invoke-OSDSpecialize.xml'
+
+Write-Host -ForegroundColor Cyan "Set Unattend.xml at $AuditUnattendPath"
+$UnattendXml | Out-File -FilePath $AuditUnattendPath -Encoding utf8
+
+Write-Host -ForegroundColor Cyan 'Use-WindowsUnattend'
+Use-WindowsUnattend -Path 'C:\' -UnattendPath $AuditUnattendPath -Verbose
+
 #================================================
 #  [PostOS] AutopilotOOBE CMD Command Line
 #================================================
@@ -34,7 +109,7 @@ PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Install-Module AutopilotOOBE -Force -Verbose -SkipPublisherCheck
 Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
-REM Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/AkosBakos/OSDCloud/main/Set-KeyboardLanguage.ps1
+REM Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
 Start /Wait PowerShell -NoL -C Start-OOBEDeploy
 REM Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
@@ -55,4 +130,4 @@ $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.c
 #=======================================================================
 Write-Host  -ForegroundColor Green "Restarting in 20 seconds!"
 Start-Sleep -Seconds 20
-wpeutil reboot
+#wpeutil reboot
