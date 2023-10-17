@@ -20,6 +20,12 @@ $packageNames = @(
     "MicrosoftTeams"
 )
 
+$teamsrunning = Get-Process -Name "msteams" -ErrorAction SilentlyContinue
+
+if ($teamsrunning) {
+    Get-Process -Name "msteams" | Stop-Process -Force
+}
+
 # Loop through the array and remove the specified applications
 foreach ($packageName in $packageNames) {
     if (Get-AppxPackage -Name $packageName -AllUsers) {
