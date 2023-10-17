@@ -241,3 +241,4 @@ Process {
         Write-LogEntry -Value "No Black List Apps defined in array"
     }
 }
+read-host -prompt "Press any key to continue"
