@@ -1,4 +1,4 @@
-Begin {
+Begin { 
 
     #Log Function 
     function Write-LogEntry {
