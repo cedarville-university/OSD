@@ -1,6 +1,6 @@
 Begin {
 
-    #Log Function
+    #Log Function 
     function Write-LogEntry {
         param (
             [parameter(Mandatory = $true)]
