@@ -72,6 +72,7 @@ $SetupCompleteCMD = @'
 C:\Windows\System32\Autopilot.cmd
 RD C:\OSDCloud\OS /S /Q
 RD C:\Drivers /S /Q
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive /t REG_DWORD /v DisableFileSyncNGSC /d 0 /f
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
