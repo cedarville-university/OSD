@@ -60,6 +60,8 @@ Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-Appx-AllUsers2.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
 Start /Wait PowerShell -NoL -C Start-OOBEDeploy
+Start /Wait PowerShell -NoL -C "Get-AppxPackage -AllUsers -Name MicrosoftTeams | Remove-AppxPackage -AllUsers"
+reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive /t REG_DWORD /v DisableFileSyncNGSC /d 0 /f
 REM Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Autopilot.cmd' -Encoding ascii -Force
@@ -69,10 +71,9 @@ $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Autopilot.cmd' -Encoding
 #================================================
 Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete.cmd"
 $SetupCompleteCMD = @'
-C:\Windows\System32\Autopilot.cmd
 RD C:\OSDCloud\OS /S /Q
 RD C:\Drivers /S /Q
-reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive /t REG_DWORD /v DisableFileSyncNGSC /d 0 /f
+C:\Windows\System32\Autopilot.cmd
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
