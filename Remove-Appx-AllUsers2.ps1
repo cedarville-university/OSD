@@ -16,8 +16,7 @@ $packageNames = @(
     "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.YourPhone",
     "Microsoft.ZuneMusic",
-    "Microsoft.ZuneVideo",
-    "MicrosoftTeams"
+    "Microsoft.ZuneVideo"
 )
 
 $teamsrunning = Get-Process -Name "msteams" -ErrorAction SilentlyContinue
