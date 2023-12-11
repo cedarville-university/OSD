@@ -59,7 +59,7 @@ Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisher
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/SystemPrepScript.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-Appx-AllUsers2.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
-Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/VC%2B%2Binstall
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/VCinstall
 #Start /Wait PowerShell -NoL -C Start-OOBEDeploy
 reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive /t REG_DWORD /v DisableFileSyncNGSC /d 0 /f
 REM Start /Wait PowerShell -NoL -C Restart-Computer -Force
