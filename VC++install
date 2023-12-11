@@ -1,0 +1,11 @@
+$path = "C:\temp\vcredist\"
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+Install-Module -Name vcredist
+import-module -Name vcredist
+New-Item $path -ItemType directory
+$VcRedistsx86 = Get-VcList -Release "2013","2022" -Architecture x86 | Save-VcRedist -Path $path
+Install-VcRedist -VcList $VcRedistsx86 -Silent
+$VcRedistsx64 = Get-VcList -Release "2013","2022" -Architecture x64 | Save-VcRedist -Path $path
+Install-VcRedist -VcList $VcRedistsx64 -Silent
+Remove-Item -Path $path -Recurse
