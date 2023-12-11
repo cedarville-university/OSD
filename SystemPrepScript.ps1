@@ -2,7 +2,7 @@
 
 New-Item -ItemType Directory -Path C:\Docs -Force
 New-Item -ItemType Directory -Path c:\Temp -Force
-New-Item -ItemType Directory -Path C:\Windows\System32\icons
+New-Item -ItemType Directory -Path C:\Windows\System32\icons -force
 
 # Get the ChassisTypes information
 $chassisTypes = (Get-CimInstance -ClassName win32_computersystem).PCSystemType
