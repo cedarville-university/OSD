@@ -20,5 +20,6 @@ if ($chassisTypes -eq 2) {
 Copy-Item -Path "c:\temp\universityBackground.jpg" -Destination "C:\Windows\System32\icons\" -Force
 Remove-Item -Path "c:\temp\universityBackground.jpg" -Force
 
+#Remove DevHome and Outlook Apps from the installation.
 Remove-item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\DevHomeUpdate\" -Force -Recurse
 Remove-item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\OutlookUpdate\" -Force -Recurse
