@@ -44,7 +44,7 @@ $OOBEDeployJson = @'
                     "Microsoft.Messaging",
                     "Microsoft.MicrosoftOfficeHub",
                     "Microsoft.MicrosoftSolitaireCollection",
-                    "Microsoft.MSPaint",
+                    "Microsoft.PowerAutomateDesktop",
                     "Microsoft.People",
                     "microsoft.windowscommunicationsapps",
                     "Microsoft.WindowsFeedbackHub",
