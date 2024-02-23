@@ -1,12 +1,16 @@
 ﻿# Define an array of package names for the applications you want to remove
 $packageNames = @(
     "Microsoft.549981C3F5F10",
+    "MicrosoftTeams",
     "Microsoft.BingNews",
     "Microsoft.BingWeather",
     "Microsoft.GamingApp",
     "Microsoft.MicrosoftSolitaireCollection",
     "Microsoft.WindowsCommunicationsApps",
     "Microsoft.GetHelp",
+    "Microsoft.Getstarted",
+    "Microsoft.Maps",
+    "Microsoft.PowerAutomateDesktop",
     "Microsoft.WindowsFeedbackHub",
     "Microsoft.MicrosoftOfficeHub",
     "Microsoft.People",
