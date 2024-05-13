@@ -18,7 +18,7 @@ Import-Module OSD -Force
 $Params = @{
     OSVersion = "Windows 11"
     OSBuild = "23H2"
-    OSEdition = "Pro"
+    OSEdition = "Education"
     OSLanguage = "en-us"
     OSActivation = "Volume"
     ZTI = $true
