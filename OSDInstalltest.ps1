@@ -10,6 +10,8 @@ Write-Host -ForegroundColor Green "Updating OSD PowerShell Module"
 Install-Module OSD -Force -SkipPublisherCheck
 
 Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
-Import-Module OSD -Force   
+Import-Module OSD -Force  
+
+x:\osdcloud\Config\Dell\BiosSetting\OSDTestingScript.ps1
 
 Start-OSDCloudGUI
