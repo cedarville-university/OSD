@@ -11,3 +11,5 @@ Install-Module OSD -Force -SkipPublisherCheck
 
 Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
 Import-Module OSD -Force   
+
+Start-OSDCloudGUI
