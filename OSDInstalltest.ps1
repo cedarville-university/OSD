@@ -14,4 +14,4 @@ Import-Module OSD -Force
 
 x:\osdcloud\Config\Dell\BiosSetting\OSDTestingScript.ps1
 
-Start-OSDCloudGUI
+#Start-OSDCloudGUI
