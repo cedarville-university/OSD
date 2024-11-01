@@ -17,4 +17,10 @@ if((Get-MyComputerManufacturer) -match "Dell Inc.") {
     x:\osdcloud\Config\Dell\BiosSetting\Set-CUDellBiosSettings.ps1
 }
 
+if((Get-MyComputerManufacturer) -match "LENOVO") {
+    Write-Host "Setting Lenovo Bios Settings"
+    x:\osdcloud\Config\Lenovo\BiosSetting\Set-LenovoBiosSettings.ps1
+}
+
+
 Start-OSDCloudGUI
