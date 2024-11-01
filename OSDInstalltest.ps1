@@ -12,6 +12,9 @@ Install-Module OSD -Force -SkipPublisherCheck
 Write-Host  -ForegroundColor Green "Importing OSD PowerShell Module"
 Import-Module OSD -Force  
 
-x:\osdcloud\Config\Dell\BiosSetting\OSDTestingScript.ps1
+if((Get-MyComputerManufacturer) -match "Dell Inc.") {
+    Write-Host "Setting Dell Bios Settings"
+    x:\osdcloud\Config\Dell\BiosSetting\Set-CUDellBiosSettings.ps1
+}
 
 Start-OSDCloudGUI
