@@ -20,7 +20,7 @@ if((Get-MyComputerManufacturer) -match "Dell Inc.") {
 # Set Bios Settings for Lenovo Systems
 if((Get-MyComputerManufacturer) -match "LENOVO") {
     Write-Host "Setting Lenovo Bios Settings"
-    #x:\osdcloud\Config\Lenovo\BiosSetting\Set-LenovoBiosSettings.ps1
+    x:\osdcloud\Config\Lenovo\BiosSetting\Set-LenovoBiosSettings.ps1
 }
 
 
