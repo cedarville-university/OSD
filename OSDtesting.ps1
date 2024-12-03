@@ -29,4 +29,4 @@ Start-OSDCloud @Params
 
 Write-Host "Copying PFX file & the import script"
 Copy-Item X:\OSDCloud\Config\Scripts C:\OSDCloud\ -Recurse -Force
-Start /Wait PowerShell -NoL -C Invoke-WebPSScript
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/refs/heads/main/Copy-UnAttendedXML
