@@ -28,6 +28,6 @@ $Params = @{
 Start-OSDCloud @Params
 
 Write-Host "Copying PFX file & the import script"
-Copy-Item X:\OSDCloud\Config\Scripts C:\OSDCloud\ -Recurse -Force
+Copy-Item X:\OSDCloud\Config\Scripts\ C:\OSDCloud\ -Recurse -Force
 Copy-Item X:\OSDCloud\Config\RegScripts\Autopilot.ps1 C:\Windows\Setup\scripts -Force
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/refs/heads/main/Copy-UnAttendedXML
