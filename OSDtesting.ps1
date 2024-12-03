@@ -26,3 +26,6 @@ $Params = @{
     ZTI = $true
 }
 Start-OSDCloud @Params
+
+Write-Host "Copying PFX file & the import script"
+Copy-Item X:\OSDCloud\Config\Scripts C:\OSDCloud\ -Recurse -Force
