@@ -27,6 +27,7 @@ if (-NOT (Test-Path 'C:\Windows\Panther')) {
     New-Item -Path 'C:\Windows\Panther'-ItemType Directory -Force -ErrorAction Stop | Out-Null
 }
 
-$Panther = 'C:\Windows\Panther'
+$Panther = 'c:\OSDCloud\temp'
 $UnattendPath = "$Panther\Unattend.xml"
 $UnattendXml | Out-File -FilePath $UnattendPath -Encoding utf8 -Width 2000 -Force
+Copy-Item $UnattendPath C:\Windows\Panther -force
