@@ -54,7 +54,7 @@ Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete
 $SetupCompleteCMD = @'
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
-DEL c:\windows\setup\scripts\autopilot.ps1
+DEL c:\windows\setup\scripts\autopilot.ps1 /Q
 C:\Windows\System32\Autopilot.cmd
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
