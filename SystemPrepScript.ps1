@@ -23,3 +23,7 @@ Remove-Item -Path "c:\temp\universityBackground.jpg" -Force
 #Remove DevHome and Outlook Apps from the installation.
 Remove-item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\DevHomeUpdate\" -Force -Recurse
 Remove-item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\UScheduler_Oobe\OutlookUpdate\" -Force -Recurse
+
+#Disable Quick Assist from installation
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\QuickAssist" -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\QuickAssist" -Name "DisableQuickAssist" -PropertyType DWORD -Value 1 -Force
