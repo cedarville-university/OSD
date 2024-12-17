@@ -27,9 +27,9 @@ $Params = @{
 }
 Start-OSDCloud @Params
 
-Copy-Item X:\OSDCloud\Config\RegScripts\Autopilot.ps1 C:\Windows\Setup\scripts -Force
-Copy-Item X:\OSDCloud\Config\Scripts\Create-UnattendXML.ps1 C:\OSDCloud\Temp -Force
-& c:\OSDCloud\Temp\Create-UnattendXML.ps1
+#Copy-Item X:\OSDCloud\Config\RegScripts\Autopilot.ps1 C:\Windows\Setup\scripts -Force
+#Copy-Item X:\OSDCloud\Config\Scripts\Create-UnattendXML.ps1 C:\OSDCloud\Temp -Force
+#& c:\OSDCloud\Temp\Create-UnattendXML.ps1
 
 #================================================
 #  [PostOS] AutopilotOOBE CMD Command Line
