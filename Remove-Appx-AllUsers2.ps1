@@ -22,7 +22,8 @@ $packageNames = @(
     "Microsoft.XboxSpeechToTextOverlay",
     "Microsoft.YourPhone",
     "Microsoft.ZuneMusic",
-    "Microsoft.ZuneVideo"
+    "Microsoft.ZuneVideo",
+    "MSTeams"
 )
 
 # Loop through the array and remove the specified applications
