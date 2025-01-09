@@ -29,7 +29,7 @@ Start-OSDCloud @Params
 
 Copy-Item -Path "X:\OSDCloud\Config\RegScripts\AutopilotEnrollment.ps1" -Destination "c:\OSDCloud\Temp\" -Force
 Copy-Item -Path "X:\OSDCloud\Config\Scripts\Copy-Unattendxml1.ps1" -Destination "C:\OSDCloud\Temp" -Force
-& "C:\OSDCloud\Temp\Create-UnattendXML1.ps1"
+& "C:\OSDCloud\Temp\Copy-UnattendXML1.ps1"
 
 pause
 
