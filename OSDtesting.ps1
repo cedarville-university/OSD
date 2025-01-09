@@ -27,9 +27,33 @@ $Params = @{
 }
 Start-OSDCloud @Params
 
-#Copy-Item X:\OSDCloud\Config\RegScripts\Autopilot.ps1 C:\Windows\Setup\scripts -Force
-#Copy-Item X:\OSDCloud\Config\Scripts\Create-UnattendXML.ps1 C:\OSDCloud\Temp -Force
-#& c:\OSDCloud\Temp\Create-UnattendXML.ps1
+Copy-Item -Path "X:\OSDCloud\Config\RegScripts\AutopilotEnrollment.ps1" -Destination "c:\OSDCloud\Temp\" -Force
+Copy-Item -Path "X:\OSDCloud\Config\Scripts\Copy-Unattendxml1.ps1" -Destination "C:\OSDCloud\Temp" -Force
+& "C:\OSDCloud\Temp\Create-UnattendXML1.ps1"
+
+pause
+
+#================================================
+#  [PostOS] OOBEDeploy Configuration
+#================================================
+Write-Host -ForegroundColor Green "Create C:\ProgramData\OSDeploy\OSDeploy.OOBEDeploy.json"
+$OOBEDeployJson = @'
+{
+    "Autopilot":  {
+                      "IsPresent":  false
+                  },
+    "UpdateDrivers":  {
+                          "IsPresent":  true
+                      },
+    "UpdateWindows":  {
+                          "IsPresent":  true
+                      }
+}
+'@
+If (!(Test-Path "C:\ProgramData\OSDeploy")) {
+    New-Item "C:\ProgramData\OSDeploy" -ItemType Directory -Force | Out-Null
+}
+$OOBEDeployJson | Out-File -FilePath "C:\ProgramData\OSDeploy\OSDeploy.OOBEDeploy.json" -Encoding ascii -Force
 
 #================================================
 #  [PostOS] AutopilotOOBE CMD Command Line
@@ -64,4 +88,5 @@ $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.c
 #=======================================================================
 Write-Host  -ForegroundColor Green "Restarting in 20 seconds!"
 Start-Sleep -Seconds 20
+pause
 wpeutil reboot
