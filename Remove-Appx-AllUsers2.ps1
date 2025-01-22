@@ -13,7 +13,7 @@ $packageNames = @(
     "Microsoft.PowerAutomateDesktop",
     "Microsoft.WindowsFeedbackHub",
     "Microsoft.MicrosoftOfficeHub",
-    "Microsoft,OutlookforWindows",
+    "Microsoft.OutlookforWindows",
     "Microsoft.People",
     "MicrosoftCorporationII.QuickAssist",
     "Microsoft.XboxGameOverlay",
