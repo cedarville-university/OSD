@@ -30,14 +30,8 @@ Start-OSDCloud @Params
 #================================================
 Write-Host -ForegroundColor Green "Create C:\Windows\System32\Autopilot.cmd"
 $AutopilotCMD = @'
-PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Register-PSRepository -Default
-
-# Ensure $env:LOCALAPPDATA is set
-if (-not $env:LOCALAPPDATA) {
-    $env:LOCALAPPDATA = [System.IO.Path]::Combine($env:USERPROFILE, "AppData", "Local")
-}
+Start /wait Powershell -NoL -C Set-ExecutionPolicy RemoteSigned -Force
+Start /wait Powershell -NoL -C [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /wait Powershell -NoL -C Set-PSRepository -Name PSGallery -InstallationPolicy Trusted 
 Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
