@@ -46,9 +46,16 @@ $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Autopilot.cmd' -Encoding
 #================================================
 Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete.cmd"
 $SetupCompleteCMD = @'
+REM Set power plan to High Performance
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+REM Disable sleep mode
+powercfg /change /standby-timeout-ac 0
+powercfg /change /standby-timeout-dc 0
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
 C:\Windows\System32\Autopilot.cmd
+REM Restore default power schemes
+powercfg /restoredefaultschemes
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
