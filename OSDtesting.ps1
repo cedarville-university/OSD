@@ -35,6 +35,7 @@ Start /wait Powershell -NoL -C [Net.ServicePointManager]::SecurityProtocol = [Ne
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /wait Powershell -NoL -C Set-PSRepository -Name PSGallery -InstallationPolicy Trusted 
 Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
+Start /wait Powershell -Nol -C Start-WindowsUpdate
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/SystemPrepScript.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
 REM Start /Wait PowerShell -NoL -C Restart-Computer -Force
