@@ -35,7 +35,8 @@ Start /wait Powershell -NoL -C [Net.ServicePointManager]::SecurityProtocol = [Ne
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /wait Powershell -NoL -C Set-PSRepository -Name PSGallery -InstallationPolicy Trusted 
 Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
-Start /Wait PowerShell -NoL -C Start-WindowsUpdate
+Start /wait Powershell -Nol -C Start-WindowsUpdate
+Start /wait Powershell -Nol -C Start-WindowsUpdateDriver
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/SystemPrepScript.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-Appx-AllUsers2.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
@@ -48,9 +49,16 @@ $AutopilotCMD | Out-File -FilePath 'C:\Windows\System32\Autopilot.cmd' -Encoding
 #================================================
 Write-Host -ForegroundColor Green "Create C:\Windows\Setup\Scripts\SetupComplete.cmd"
 $SetupCompleteCMD = @'
+REM Set power plan to High Performance
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+REM Disable sleep mode
+powercfg /change /standby-timeout-ac 0
+powercfg /change /standby-timeout-dc 0
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
 C:\Windows\System32\Autopilot.cmd
+REM Restore default power schemes
+powercfg /restoredefaultschemes
 '@
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
 
