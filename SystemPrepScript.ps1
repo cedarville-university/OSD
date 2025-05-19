@@ -28,5 +28,10 @@ Remove-item -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\Orchestrator\USchedule
 New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\QuickAssist" -Force
 New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\QuickAssist" -Name "DisableQuickAssist" -PropertyType DWORD -Value 1 -Force
 
+
+#Prevent automatic device encryption during OOBE
+New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker" -Force
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker" -Name "PreventDeviceEncryption" -PropertyType DWORD -Value 1 -Force
+
 #Add Registry setting to RunOnce that will start app deployment after intital log in
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunPushLaunchTask" -Value "powershell.exe -NoProfile -Command `"Get-ScheduledTask | ? {`$_.TaskName -eq 'PushLaunch'} | Start-ScheduledTask`""
