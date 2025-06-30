@@ -36,4 +36,3 @@ New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\BitLocker" -Name 
 #Add Registry setting to RunOnce that will start app deployment after intital log in
 Set-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce" -Name "RunPushLaunchTask" -Value "powershell.exe -NoProfile -Command `"Get-ScheduledTask | ? {`$_.TaskName -eq 'PushLaunch'} | Start-ScheduledTask`""
 
-pause
