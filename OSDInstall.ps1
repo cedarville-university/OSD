@@ -34,9 +34,9 @@ Start /wait Powershell -NoL -C Set-ExecutionPolicy RemoteSigned -Force
 Start /wait Powershell -NoL -C [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /wait Powershell -NoL -C Set-PSRepository -Name PSGallery -InstallationPolicy Trusted 
-Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
-Start /wait Powershell -Nol -C Start-WindowsUpdate
-Start /wait Powershell -Nol -C Start-WindowsUpdateDriver
+REM Start /Wait PowerShell -NoL -C Install-Module OSD -Force -Verbose -SkipPublisherCheck
+REM Start /wait Powershell -Nol -C Start-WindowsUpdate
+REM Start /wait Powershell -Nol -C Start-WindowsUpdateDriver
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/SystemPrepScript.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-Appx-AllUsers2.ps1
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/cedarville-university/OSD/main/Remove-OneDriveSetup_RunKey.ps1
