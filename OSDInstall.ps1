@@ -56,7 +56,7 @@ powercfg /change /standby-timeout-ac 0
 powercfg /change /standby-timeout-dc 0
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
-C:\Windows\System32\Autopilot.cmd
+REM C:\Windows\System32\Autopilot.cmd
 REM Restore default power schemes
 powercfg /restoredefaultschemes
 '@
